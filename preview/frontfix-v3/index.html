@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#05070b">
+<title>FrontFix V3 — Cinematic Preview</title>
+<style>
+:root{--bg:#05070b;--ink:#f7f8fb;--muted:#8d98aa;--line:rgba(255,255,255,.1);--cyan:#6ef0ff;--violet:#7d6cff;--acid:#c8ff6a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#05070b;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,black 0,transparent 82%);z-index:-1}
+#webgl{position:fixed;inset:0;z-index:0;pointer-events:none}
+.noise{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E")}
+.site{position:relative;z-index:3}.shell{width:min(1200px,calc(100% - 44px));margin:auto}
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 28px));display:flex;align-items:center;justify-content:space-between;padding:12px 14px 12px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(6,9,14,.55);backdrop-filter:blur(20px);z-index:20}
+.logo{font-size:25px;font-weight:950;letter-spacing:-.06em}.logo b{color:var(--cyan)}.navlinks{display:flex;align-items:center;gap:24px}.nav a{color:#adb8c8;text-decoration:none;font-size:12px;font-weight:800}.nav .cta{padding:10px 14px;border-radius:10px;background:#fff;color:#070a0f}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:50px;padding-top:100px}
+.eyebrow{font-size:10px;letter-spacing:.18em;font-weight:900;color:var(--cyan);text-transform:uppercase}.eyebrow:before{content:"";display:inline-block;width:28px;height:1px;background:currentColor;margin-right:10px;vertical-align:middle}
+.hero h1{font-size:clamp(66px,8vw,112px);line-height:.83;letter-spacing:-.085em;margin:20px 0 26px;max-width:760px}.hero h1 .grad{display:block;color:transparent;background:linear-gradient(100deg,#fff 5%,var(--cyan) 45%,#8c7cff 92%);-webkit-background-clip:text;background-clip:text}
+.hero p{font-size:18px;color:#9ba6b7;max-width:650px;line-height:1.7}.actions{display:flex;gap:12px;margin-top:30px}.btn{padding:14px 18px;border-radius:13px;text-decoration:none;font-weight:900;font-size:13px}.primary{background:linear-gradient(135deg,#fff,var(--cyan));color:#071017}.ghost{border:1px solid var(--line);color:#e8edf5;background:rgba(255,255,255,.025)}
+.hero-right{height:650px;position:relative}.hero-label{position:absolute;right:0;top:14%;font-size:10px;letter-spacing:.14em;color:#6f7d91;text-align:right}.hero-label b{display:block;color:#dbe5f2;font-size:14px;margin-bottom:4px}
+.float-card{position:absolute;border:1px solid rgba(255,255,255,.12);background:rgba(12,17,26,.56);backdrop-filter:blur(18px);border-radius:18px;padding:16px 18px;box-shadow:0 25px 80px rgba(0,0,0,.3)}.fc1{right:0;bottom:20%;width:210px}.fc2{left:0;top:25%;width:180px}.float-card small{display:block;font-size:8px;letter-spacing:.14em;color:#718096}.float-card strong{display:block;font-size:30px;letter-spacing:-.06em;margin-top:6px}.float-card span{font-size:10px;color:#7e8a9b}.pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:#76f6b6;box-shadow:0 0 16px #76f6b6;margin-right:7px}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.18em;color:#657287;text-transform:uppercase}.scroll-hint:after{content:"";display:block;width:1px;height:50px;background:linear-gradient(#77869d,transparent);margin:9px auto 0}
+.marquee{position:relative;z-index:5;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;background:rgba(6,9,14,.45);backdrop-filter:blur(12px)}.track{display:inline-flex;gap:40px;padding:15px 0;font-size:10px;font-weight:900;letter-spacing:.14em;color:#7d899b}
+.chapter{min-height:100vh;display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:center;padding:120px 0}.chapter .number{font-size:10px;color:var(--cyan);font-weight:900;letter-spacing:.15em}.chapter h2{font-size:clamp(54px,6.3vw,88px);line-height:.9;letter-spacing:-.075em;margin:14px 0 24px}.chapter p{color:#8c98aa;font-size:17px;line-height:1.7;max-width:620px}.feature-list{display:grid;gap:10px;margin-top:30px}.feature{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;border-top:1px solid var(--line);padding:16px 0}.feature b{font-size:12px}.feature span{font-size:12px;color:#788598}
+.panel-stage{position:relative;min-height:640px}.panel{position:absolute;border:1px solid rgba(255,255,255,.11);border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015));backdrop-filter:blur(18px);box-shadow:0 40px 110px rgba(0,0,0,.38);overflow:hidden}.panel.big{inset:5% 0 5% 11%}.panel.small{width:48%;height:36%;left:0;bottom:1%;z-index:3}.panel-top{height:42px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 14px}.panel-top i{width:7px;height:7px;border-radius:50%;background:#364255}.panel-body{padding:28px}.scan-title{font-size:11px;letter-spacing:.14em;color:#6d7a8f}.scan-score{font-size:72px;font-weight:950;letter-spacing:-.08em;margin:24px 0}.scan-score span{font-size:14px;color:#6d7a8f}.scan-row{display:flex;justify-content:space-between;padding:13px 0;border-top:1px solid var(--line);font-size:12px;color:#9aa6b6}.scan-row b{font-size:9px;letter-spacing:.09em;color:#7df0b8}.mini-chart{display:flex;align-items:end;gap:6px;height:90px;margin-top:20px}.mini-chart i{flex:1;border-radius:5px;background:linear-gradient(var(--cyan),var(--violet));opacity:.8}
+.showcase-wrap{padding:150px 0}.showcase-head{display:grid;grid-template-columns:.5fr 1.5fr;gap:40px;margin-bottom:60px}.showcase-head h2{font-size:clamp(54px,6vw,86px);line-height:.9;letter-spacing:-.075em;margin:0}.cases{display:grid;gap:18px}.case{position:relative;min-height:560px;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:#0a0e15}.case .bg{position:absolute;inset:0}.case1 .bg{background:radial-gradient(circle at 70% 42%,rgba(125,108,255,.45),transparent 20%),linear-gradient(130deg,#071018 0 50%,#10162a 100%)}.case2 .bg{background:linear-gradient(135deg,#e9e0d4,#9f8973)}.case3 .bg{background:linear-gradient(120deg,#f3eee5 0 48%,#ff4d2e 48% 68%,#111 68%)}
+.case-copy{position:absolute;left:40px;bottom:38px;z-index:2}.case-copy small{font-size:9px;letter-spacing:.16em;color:#8d99ac}.case-copy h3{font-size:52px;letter-spacing:-.07em;margin:8px 0 0}.case2 .case-copy{color:#1e1915}.case2 .case-copy small{color:#6d6258}.case3 .case-copy{color:#111}.case3 .case-copy small{color:#333}
+.orb-demo{position:absolute;width:360px;height:360px;border-radius:50%;right:14%;top:18%;background:radial-gradient(circle at 35% 30%,#d7fbff,#6d57ff 32%,#262b48 62%,transparent 64%);box-shadow:0 0 100px rgba(108,86,255,.48)}
+.arch-demo{position:absolute;width:42%;height:72%;right:13%;top:14%;border-radius:200px 200px 0 0;background:linear-gradient(155deg,#dfcdbc,#8f735d);box-shadow:inset -50px -40px 80px #0002}.arch-demo:after{content:"";position:absolute;width:52%;height:56%;left:24%;bottom:0;background:#3c312a}
+.case3 .shape{position:absolute;right:10%;top:18%;width:38%;height:55%;background:#755cff;clip-path:polygon(0 0,100% 15%,78% 100%,10% 78%)}
+.pricing{padding:140px 0}.pricing h2{font-size:clamp(52px,6vw,82px);letter-spacing:-.075em;line-height:.9;margin:0 0 50px;max-width:900px}.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.price{padding:28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.018);min-height:330px;display:flex;flex-direction:column}.price.featured{background:radial-gradient(circle at 80% 0,rgba(110,240,255,.11),transparent 35%),rgba(255,255,255,.025);border-color:rgba(110,240,255,.24)}.price small{font-size:9px;letter-spacing:.15em;color:#6f7d90}.price strong{font-size:46px;letter-spacing:-.06em;margin:20px 0}.price p{font-size:13px;color:#7e899b}.price a{margin-top:auto;color:#fff;text-decoration:none;font-weight:900;font-size:12px}
+.end{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center}.end h2{font-size:clamp(64px,9vw,130px);line-height:.82;letter-spacing:-.09em;margin:0}.end h2 span{display:block;color:transparent;background:linear-gradient(90deg,#fff,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text}.end p{color:#8794a6;margin:28px auto;max-width:600px}.end a{display:inline-flex}
+.footer{border-top:1px solid var(--line);padding:30px 0 50px;display:flex;justify-content:space-between;color:#667386;font-size:11px}
+@media(max-width:900px){.hero,.chapter{grid-template-columns:1fr}.hero{padding-top:140px}.hero-right{height:500px}.chapter{gap:40px}.showcase-head{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}.navlinks>a:not(.cta){display:none}.orb-demo{width:260px;height:260px;right:5%}.case{min-height:480px}}
+@media(max-width:640px){.shell{width:min(100% - 28px,1200px)}.hero h1{font-size:58px}.hero-right{height:420px}.float-card{transform:scale(.85)}.fc2{left:-15px}.chapter{padding:90px 0}.panel-stage{min-height:500px}.panel.big{left:0}.panel.small{width:60%}.case-copy{left:22px;bottom:24px}.case-copy h3{font-size:36px}.orb-demo{width:210px;height:210px}.arch-demo{width:60%;right:6%}.price-grid{gap:10px}.footer{flex-direction:column;gap:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<canvas id="webgl"></canvas><div class="noise"></div>
+<div class="site">
+<nav class="nav"><div class="logo">Front<b>Fix</b></div><div class="navlinks"><a href="#work">Work</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a class="cta" href="mailto:alex.altherai@gmail.com?subject=FrontFix%20V3%20inquiry">Send your site</a></div></nav>
+
+<section class="hero shell">
+<div>
+<div class="eyebrow hero-kicker">Website rescue / rebuild / motion</div>
+<h1 class="hero-title">Fix the ordinary.<span class="grad">Build the unforgettable.</span></h1>
+<p class="hero-copy">FrontFix repairs what is broken — then goes further. Premium web experiences with cinematic motion, real-time 3D and interfaces that feel designed, not templated.</p>
+<div class="actions"><a class="btn primary" href="mailto:alex.altherai@gmail.com?subject=Website%20review">Send your website</a><a class="btn ghost" href="#work">Explore the work</a></div>
+</div>
+<div class="hero-right">
+<div class="hero-label"><b>Interactive object</b>REAL-TIME WEBGL / THREE.JS</div>
+<div class="float-card fc1"><small>VISUAL DEPTH</small><strong>3D</strong><span><i class="pulse"></i>Live rendered</span></div>
+<div class="float-card fc2"><small>MOTION SYSTEM</small><strong>GSAP</strong><span>Scroll-linked choreography</span></div>
+</div>
+<div class="scroll-hint">Scroll to transform</div>
+</section>
+
+<div class="marquee"><div class="track">THREE.JS • GSAP • SCROLLTRIGGER • PREMIUM TYPOGRAPHY • REAL-TIME LIGHTING • SMOOTH MOTION • THREE.JS • GSAP • SCROLLTRIGGER • PREMIUM TYPOGRAPHY • REAL-TIME LIGHTING • SMOOTH MOTION •</div></div>
+
+<section id="services" class="chapter shell chapter-one">
+<div>
+<div class="number">01 / WEBSITE RESCUE</div>
+<h2>Start with the friction that costs trust.</h2>
+<p>We find visible problems first: unfinished content, broken paths, weak hierarchy, dated layouts and mobile experiences that make a good business feel smaller than it is.</p>
+<div class="feature-list">
+<div class="feature"><b>01</b><span><b>Inspect</b><br>Public-facing problems and friction.</span></div>
+<div class="feature"><b>02</b><span><b>Scope</b><br>One clear fix before any paid work.</span></div>
+<div class="feature"><b>03</b><span><b>Transform</b><br>From repair to premium rebuild when needed.</span></div>
+</div>
+</div>
+<div class="panel-stage">
+<div class="panel big scan-panel"><div class="panel-top"><i></i><i></i><i></i></div><div class="panel-body"><div class="scan-title">FRONTFIX VISUAL SCAN</div><div class="scan-score">07 <span>public issues</span></div><div class="scan-row"><span>Placeholder content</span><b>CRITICAL</b></div><div class="scan-row"><span>CTA hierarchy</span><b>HIGH</b></div><div class="scan-row"><span>Mobile spacing</span><b>MEDIUM</b></div><div class="scan-row"><span>Trust proof</span><b>MEDIUM</b></div></div></div>
+<div class="panel small chart-panel"><div class="panel-body"><div class="scan-title">POLISH INDEX</div><div class="mini-chart"><i style="height:28%"></i><i style="height:42%"></i><i style="height:51%"></i><i style="height:74%"></i><i style="height:90%"></i></div></div></div>
+</div>
+</section>
+
+<section id="work" class="showcase-wrap shell">
+<div class="showcase-head"><div class="eyebrow">Selected concepts</div><h2>Different industries. Different visual worlds.</h2></div>
+<div class="cases">
+<article class="case case1"><div class="bg"></div><div class="orb-demo"></div><div class="case-copy"><small>SAAS / AI • CONCEPT</small><h3>NeonFlow</h3></div></article>
+<article class="case case2"><div class="bg"></div><div class="arch-demo"></div><div class="case-copy"><small>LUXURY / INTERIORS • CONCEPT</small><h3>Aurelia House</h3></div></article>
+<article class="case case3"><div class="bg"></div><div class="shape"></div><div class="case-copy"><small>CREATIVE / BRAND • CONCEPT</small><h3>Kinetic Studio</h3></div></article>
+</div>
+</section>
+
+<section id="pricing" class="pricing shell">
+<div class="eyebrow">Start small or rebuild properly</div>
+<h2>Pay for the problem you actually need solved.</h2>
+<div class="price-grid">
+<div class="price"><small>QUICK FIX</small><strong>€29+</strong><p>One visible problem, scoped clearly and fixed fast.</p><a href="mailto:alex.altherai@gmail.com?subject=Quick%20Fix">Start here →</a></div>
+<div class="price featured"><small>HOMEPAGE RESCUE</small><strong>€79+</strong><p>Structure, mobile hierarchy, CTA path and visual cleanup.</p><a href="mailto:alex.altherai@gmail.com?subject=Homepage%20Rescue">Rescue the homepage →</a></div>
+<div class="price"><small>PREMIUM REBUILD</small><strong>Custom</strong><p>High-end motion, 3D and a complete visual direction.</p><a href="mailto:alex.altherai@gmail.com?subject=Premium%20Rebuild">Build something memorable →</a></div>
+</div>
+</section>
+
+<section class="end shell">
+<div><div class="eyebrow">FrontFix V3 preview</div><h2>Stop looking<span>unfinished.</span></h2><p>Send the site you want to stop apologizing for. We’ll tell you what is worth fixing first.</p><a class="btn primary" href="mailto:alex.altherai@gmail.com?subject=Website%20review">Send your website</a></div>
+</section>
+<footer class="footer shell"><span>FrontFix — cinematic preview</span><span>Fictional concepts are clearly marked</span><span>© 2026</span></footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.8/dist/lenis.min.js"></script>
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
+
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canvas=document.getElementById('webgl');
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));
+renderer.setSize(innerWidth,innerHeight);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.15;
+
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,100);
+camera.position.set(0,0,7.4);
+
+const group=new THREE.Group();scene.add(group);
+const coreGeo=new THREE.IcosahedronGeometry(1.55,8);
+const coreMat=new THREE.MeshPhysicalMaterial({color:new THREE.Color('#7a6cff'),metalness:.18,roughness:.12,transmission:.2,thickness:1.5,clearcoat:1,clearcoatRoughness:.08,iridescence:.6,iridescenceIOR:1.8});
+const core=new THREE.Mesh(coreGeo,coreMat);group.add(core);
+
+const wireGeo=new THREE.TorusKnotGeometry(2.05,.055,220,18,2,5);
+const wireMat=new THREE.MeshStandardMaterial({color:new THREE.Color('#6ef0ff'),emissive:new THREE.Color('#1baabc'),emissiveIntensity:2.2,metalness:.6,roughness:.2});
+const wire=new THREE.Mesh(wireGeo,wireMat);group.add(wire);
+
+const ringGeo=new THREE.TorusGeometry(2.6,.022,12,240);
+for(let i=0;i<3;i++){const ring=new THREE.Mesh(ringGeo,new THREE.MeshBasicMaterial({color:i===0?0x6ef0ff:i===1?0x7d6cff:0xffffff,transparent:true,opacity:.32-i*.06}));ring.rotation.x=Math.PI*(.22+i*.18);ring.rotation.y=Math.PI*(.12+i*.2);group.add(ring)}
+
+const particlesGeo=new THREE.BufferGeometry();const count=700;const pos=new Float32Array(count*3);
+for(let i=0;i<count;i++){const r=3+Math.random()*4;const a=Math.random()*Math.PI*2;const b=(Math.random()-.5)*Math.PI;pos[i*3]=Math.cos(a)*Math.cos(b)*r;pos[i*3+1]=Math.sin(b)*r;pos[i*3+2]=Math.sin(a)*Math.cos(b)*r}
+particlesGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const particles=new THREE.Points(particlesGeo,new THREE.PointsMaterial({color:0x91eaff,size:.015,transparent:true,opacity:.45}));scene.add(particles);
+
+scene.add(new THREE.AmbientLight(0x8194ff,1.8));
+const key=new THREE.PointLight(0x6ef0ff,35,20);key.position.set(4,4,5);scene.add(key);
+const fill=new THREE.PointLight(0x765cff,28,20);fill.position.set(-4,-1,3);scene.add(fill);
+const rim=new THREE.PointLight(0xffffff,18,16);rim.position.set(0,-4,-2);scene.add(rim);
+
+let targetX=0,targetY=0;
+window.addEventListener('pointermove',e=>{targetX=(e.clientX/innerWidth-.5)*.45;targetY=(e.clientY/innerHeight-.5)*.3});
+
+function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}
+addEventListener('resize',resize);
+
+function frame(t){requestAnimationFrame(frame);const time=t*.001;group.rotation.y+=(targetX-group.rotation.y)*.025;group.rotation.x+=(targetY-group.rotation.x)*.025;if(!reduced){core.rotation.y=time*.16;core.rotation.x=Math.sin(time*.35)*.15;wire.rotation.z=-time*.08;particles.rotation.y=time*.018}renderer.render(scene,camera)}
+requestAnimationFrame(frame);
+
+gsap.registerPlugin(ScrollTrigger);
+if(!reduced){
+  const lenis=new Lenis({duration:1.1,smoothWheel:true});
+  lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(time=>lenis.raf(time*1000));gsap.ticker.lagSmoothing(0);
+
+  gsap.from('.hero-kicker',{y:18,opacity:0,duration:.7,ease:'power3.out'});
+  gsap.from('.hero-title',{y:70,opacity:0,duration:1.1,delay:.1,ease:'power4.out'});
+  gsap.from('.hero-copy,.actions',{y:30,opacity:0,duration:.8,delay:.45,stagger:.12});
+  gsap.from('.float-card',{scale:.8,opacity:0,duration:.9,delay:.65,stagger:.14,ease:'back.out(1.5)'});
+
+  gsap.to(group.rotation,{z:Math.PI*.95,y:Math.PI*1.35,ease:'none',scrollTrigger:{trigger:'.chapter-one',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.to(group.position,{x:-2.3,y:-.35,z:-1.2,ease:'none',scrollTrigger:{trigger:'.chapter-one',start:'top 85%',end:'bottom 15%',scrub:1}});
+  gsap.to(core.scale,{x:.6,y:.6,z:.6,ease:'none',scrollTrigger:{trigger:'.showcase-wrap',start:'top bottom',end:'top 15%',scrub:1}});
+  gsap.to(group.position,{x:2.6,y:1,z:-2,ease:'none',scrollTrigger:{trigger:'.showcase-wrap',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.to(group.rotation,{x:Math.PI*.7,z:Math.PI*1.5,ease:'none',scrollTrigger:{trigger:'.showcase-wrap',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.to('.track',{xPercent:-38,ease:'none',scrollTrigger:{trigger:'.marquee',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.from('.scan-panel',{x:100,rotateY:-14,opacity:0,scrollTrigger:{trigger:'.chapter-one',start:'top 70%',end:'center 45%',scrub:1}});
+  gsap.from('.chart-panel',{x:-80,y:80,rotateZ:-6,opacity:0,scrollTrigger:{trigger:'.chapter-one',start:'top 65%',end:'center 40%',scrub:1}});
+  document.querySelectorAll('.case').forEach((el,i)=>{gsap.from(el,{y:100,scale:.94,opacity:0,scrollTrigger:{trigger:el,start:'top 90%',end:'top 55%',scrub:1}});gsap.to(el.querySelector('.bg'),{scale:1.12,scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:1}})});
+  gsap.from('.price',{y:80,opacity:0,stagger:.12,scrollTrigger:{trigger:'.price-grid',start:'top 78%'}});
+  gsap.to(group.position,{x:0,y:0,z:-.5,ease:'none',scrollTrigger:{trigger:'.end',start:'top bottom',end:'center center',scrub:1}});
+  gsap.to(core.scale,{x:1.35,y:1.35,z:1.35,ease:'none',scrollTrigger:{trigger:'.end',start:'top bottom',end:'center center',scrub:1}});
+}
+</script>
+</body>
+</html>
