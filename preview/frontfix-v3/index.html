@@ -149,7 +149,7 @@ function addChip(parent,width,height,x,y,color,glow=false){
   const mesh=new THREE.Mesh(
     new THREE.BoxGeometry(width,height,.05),
     new THREE.MeshStandardMaterial({
-      color,emissive:glow?color:0x000000,emissiveIntensity:glow?.55:0,
+      color,emissive:glow?color:0x000000,emissiveIntensity:glow ? .55 : 0,
       roughness:.2,metalness:.12
     })
   );
@@ -216,7 +216,7 @@ for(let i=0;i<14;i++){
   const chip=new THREE.Mesh(
     new THREE.BoxGeometry(w,h,z),
     new THREE.MeshStandardMaterial({
-      color,emissive:color,emissiveIntensity:color===0xffffff?.08:.35,
+      color,emissive:color,emissiveIntensity:color===0xffffff ? .08 : .35,
       transparent:true,opacity:.95,roughness:.22,metalness:.1
     })
   );
