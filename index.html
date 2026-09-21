@@ -1,252 +1,305 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="FrontFix repairs broken websites, modernizes outdated pages and rebuilds high-impact business websites.">
-  <meta name="theme-color" content="#05070b">
-  <meta property="og:title" content="FrontFix — Fix what makes your website look unfinished">
-  <meta property="og:description" content="Fast website fixes, modern rebuilds and practical audits for real businesses.">
-  <title>FrontFix — Website fixes & premium rebuilds</title>
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#05070b">
+<meta name="description" content="FrontFix repairs broken websites and builds premium modern web experiences with motion, 3D and focused conversion paths.">
+<meta property="og:title" content="FrontFix — Website rescue, rebuild & premium web design">
+<meta property="og:description" content="Fast website fixes, homepage rescues and premium interactive rebuilds.">
+<title>FrontFix — Website Rescue, Rebuild & Premium Web Design</title>
+<style>
+:root{--bg:#05070b;--ink:#f7f8fb;--muted:#8d98aa;--line:rgba(255,255,255,.1);--cyan:#6ef0ff;--violet:#7d6cff;--acid:#c8ff6a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#05070b;color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:54px 54px;mask-image:linear-gradient(to bottom,black 0,transparent 82%);z-index:-1}
+#webgl{position:fixed;inset:0;z-index:0;pointer-events:none}
+.noise{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.045;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.75'/%3E%3C/svg%3E")}
+.site{position:relative;z-index:3}.shell{width:min(1200px,calc(100% - 44px));margin:auto}
+.nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);width:min(1180px,calc(100% - 28px));display:flex;align-items:center;justify-content:space-between;padding:12px 14px 12px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(6,9,14,.55);backdrop-filter:blur(20px);z-index:20}
+.logo{font-size:25px;font-weight:950;letter-spacing:-.06em}.logo b{color:var(--cyan)}.navlinks{display:flex;align-items:center;gap:24px}.nav a{color:#adb8c8;text-decoration:none;font-size:12px;font-weight:800}.nav .cta{padding:10px 14px;border-radius:10px;background:#fff;color:#070a0f}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:50px;padding-top:100px}
+.eyebrow{font-size:10px;letter-spacing:.18em;font-weight:900;color:var(--cyan);text-transform:uppercase}.eyebrow:before{content:"";display:inline-block;width:28px;height:1px;background:currentColor;margin-right:10px;vertical-align:middle}
+.hero h1{font-size:clamp(66px,8vw,112px);line-height:.83;letter-spacing:-.085em;margin:20px 0 26px;max-width:760px}.hero h1 .grad{display:block;color:transparent;background:linear-gradient(100deg,#fff 5%,var(--cyan) 45%,#8c7cff 92%);-webkit-background-clip:text;background-clip:text}
+.hero p{font-size:18px;color:#9ba6b7;max-width:650px;line-height:1.7}.actions{display:flex;gap:12px;margin-top:30px}.btn{padding:14px 18px;border-radius:13px;text-decoration:none;font-weight:900;font-size:13px}.primary{background:linear-gradient(135deg,#fff,var(--cyan));color:#071017}.ghost{border:1px solid var(--line);color:#e8edf5;background:rgba(255,255,255,.025)}
+.hero-right{height:650px;position:relative}.hero-label{position:absolute;right:0;top:14%;font-size:10px;letter-spacing:.14em;color:#6f7d91;text-align:right}.hero-label b{display:block;color:#dbe5f2;font-size:14px;margin-bottom:4px}
+.float-card{position:absolute;border:1px solid rgba(255,255,255,.12);background:rgba(12,17,26,.56);backdrop-filter:blur(18px);border-radius:18px;padding:16px 18px;box-shadow:0 25px 80px rgba(0,0,0,.3)}.fc1{right:0;bottom:20%;width:210px}.fc2{left:0;top:25%;width:180px}.float-card small{display:block;font-size:8px;letter-spacing:.14em;color:#718096}.float-card strong{display:block;font-size:30px;letter-spacing:-.06em;margin-top:6px}.float-card span{font-size:10px;color:#7e8a9b}.pulse{display:inline-block;width:7px;height:7px;border-radius:50%;background:#76f6b6;box-shadow:0 0 16px #76f6b6;margin-right:7px}
+.scroll-hint{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);font-size:9px;letter-spacing:.18em;color:#657287;text-transform:uppercase}.scroll-hint:after{content:"";display:block;width:1px;height:50px;background:linear-gradient(#77869d,transparent);margin:9px auto 0}
+.marquee{position:relative;z-index:5;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;white-space:nowrap;background:rgba(6,9,14,.45);backdrop-filter:blur(12px)}.track{display:inline-flex;gap:40px;padding:15px 0;font-size:10px;font-weight:900;letter-spacing:.14em;color:#7d899b}
+.chapter{min-height:100vh;display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:center;padding:120px 0}.chapter .number{font-size:10px;color:var(--cyan);font-weight:900;letter-spacing:.15em}.chapter h2{font-size:clamp(54px,6.3vw,88px);line-height:.9;letter-spacing:-.075em;margin:14px 0 24px}.chapter p{color:#8c98aa;font-size:17px;line-height:1.7;max-width:620px}.feature-list{display:grid;gap:10px;margin-top:30px}.feature{display:grid;grid-template-columns:36px 1fr;gap:12px;align-items:start;border-top:1px solid var(--line);padding:16px 0}.feature b{font-size:12px}.feature span{font-size:12px;color:#788598}
+.panel-stage{position:relative;min-height:640px}.panel{position:absolute;border:1px solid rgba(255,255,255,.11);border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.015));backdrop-filter:blur(18px);box-shadow:0 40px 110px rgba(0,0,0,.38);overflow:hidden}.panel.big{inset:5% 0 5% 11%}.panel.small{width:48%;height:36%;left:0;bottom:1%;z-index:3}.panel-top{height:42px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:7px;padding:0 14px}.panel-top i{width:7px;height:7px;border-radius:50%;background:#364255}.panel-body{padding:28px}.scan-title{font-size:11px;letter-spacing:.14em;color:#6d7a8f}.scan-score{font-size:72px;font-weight:950;letter-spacing:-.08em;margin:24px 0}.scan-score span{font-size:14px;color:#6d7a8f}.scan-row{display:flex;justify-content:space-between;padding:13px 0;border-top:1px solid var(--line);font-size:12px;color:#9aa6b6}.scan-row b{font-size:9px;letter-spacing:.09em;color:#7df0b8}.mini-chart{display:flex;align-items:end;gap:6px;height:90px;margin-top:20px}.mini-chart i{flex:1;border-radius:5px;background:linear-gradient(var(--cyan),var(--violet));opacity:.8}
+.showcase-wrap{padding:150px 0}.showcase-head{display:grid;grid-template-columns:.5fr 1.5fr;gap:40px;margin-bottom:60px}.showcase-head h2{font-size:clamp(54px,6vw,86px);line-height:.9;letter-spacing:-.075em;margin:0}.cases{display:grid;gap:18px}.case{position:relative;min-height:560px;border:1px solid var(--line);border-radius:30px;overflow:hidden;background:#0a0e15}.case .bg{position:absolute;inset:0}.case1 .bg{background:radial-gradient(circle at 70% 42%,rgba(125,108,255,.45),transparent 20%),linear-gradient(130deg,#071018 0 50%,#10162a 100%)}.case2 .bg{background:linear-gradient(135deg,#e9e0d4,#9f8973)}.case3 .bg{background:linear-gradient(120deg,#f3eee5 0 48%,#ff4d2e 48% 68%,#111 68%)}
+.case-copy{position:absolute;left:40px;bottom:38px;z-index:2}.case-copy small{font-size:9px;letter-spacing:.16em;color:#8d99ac}.case-copy h3{font-size:52px;letter-spacing:-.07em;margin:8px 0 0}.case2 .case-copy{color:#1e1915}.case2 .case-copy small{color:#6d6258}.case3 .case-copy{color:#111}.case3 .case-copy small{color:#333}
+.orb-demo{position:absolute;width:360px;height:360px;border-radius:50%;right:14%;top:18%;background:radial-gradient(circle at 35% 30%,#d7fbff,#6d57ff 32%,#262b48 62%,transparent 64%);box-shadow:0 0 100px rgba(108,86,255,.48)}
+.arch-demo{position:absolute;width:42%;height:72%;right:13%;top:14%;border-radius:200px 200px 0 0;background:linear-gradient(155deg,#dfcdbc,#8f735d);box-shadow:inset -50px -40px 80px #0002}.arch-demo:after{content:"";position:absolute;width:52%;height:56%;left:24%;bottom:0;background:#3c312a}
+.case3 .shape{position:absolute;right:10%;top:18%;width:38%;height:55%;background:#755cff;clip-path:polygon(0 0,100% 15%,78% 100%,10% 78%)}
+.pricing{padding:140px 0}.pricing h2{font-size:clamp(52px,6vw,82px);letter-spacing:-.075em;line-height:.9;margin:0 0 50px;max-width:900px}.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.price{padding:28px;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.018);min-height:330px;display:flex;flex-direction:column}.price.featured{background:radial-gradient(circle at 80% 0,rgba(110,240,255,.11),transparent 35%),rgba(255,255,255,.025);border-color:rgba(110,240,255,.24)}.price small{font-size:9px;letter-spacing:.15em;color:#6f7d90}.price strong{font-size:46px;letter-spacing:-.06em;margin:20px 0}.price p{font-size:13px;color:#7e899b}.price a{margin-top:auto;color:#fff;text-decoration:none;font-weight:900;font-size:12px}
+.end{min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center}.end h2{font-size:clamp(64px,9vw,130px);line-height:.82;letter-spacing:-.09em;margin:0}.end h2 span{display:block;color:transparent;background:linear-gradient(90deg,#fff,var(--cyan),var(--violet));-webkit-background-clip:text;background-clip:text}.end p{color:#8794a6;margin:28px auto;max-width:600px}.end a{display:inline-flex}
+.footer{border-top:1px solid var(--line);padding:30px 0 50px;display:flex;justify-content:space-between;color:#667386;font-size:11px}
+@media(max-width:900px){.hero,.chapter{grid-template-columns:1fr}.hero{padding-top:140px}.hero-right{height:500px}.chapter{gap:40px}.showcase-head{grid-template-columns:1fr}.price-grid{grid-template-columns:1fr}.navlinks>a:not(.cta){display:none}.orb-demo{width:260px;height:260px;right:5%}.case{min-height:480px}}
+@media(max-width:640px){.shell{width:min(100% - 28px,1200px)}.hero h1{font-size:58px}.hero-right{height:420px}.float-card{transform:scale(.85)}.fc2{left:-15px}.chapter{padding:90px 0}.panel-stage{min-height:500px}.panel.big{left:0}.panel.small{width:60%}.case-copy{left:22px;bottom:24px}.case-copy h3{font-size:36px}.orb-demo{width:210px;height:210px}.arch-demo{width:60%;right:6%}.price-grid{gap:10px}.footer{flex-direction:column;gap:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-  <div class="ambient ambient-a"></div>
-  <div class="ambient ambient-b"></div>
+<canvas id="webgl"></canvas><div class="noise"></div>
+<div class="site">
+<nav class="nav"><div class="logo">Front<b>Fix</b></div><div class="navlinks"><a href="./portfolio/">Portfolio</a><a href="#services">Services</a><a href="#pricing">Pricing</a><a class="cta" href="mailto:alex.altherai@gmail.com?subject=FrontFix%20V3%20inquiry">Send your site</a></div></nav>
 
-  <header class="site-header">
-    <a class="brand" href="#top">Front<span>Fix</span></a>
-    <button class="menu-button" aria-expanded="false" aria-controls="nav">Menu</button>
-    <nav id="nav" class="nav">
-      <a href="#services">Services</a>
-      <a href="#proof">How we work</a>
-      <a href="#portfolio">Portfolio</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#faq">FAQ</a>
-      <a class="nav-cta" href="mailto:alex.altherai@gmail.com?subject=Website%20review&body=Hi%20FrontFix%2C%0A%0AMy%20website%20is%3A%20">Send your site</a>
-    </nav>
-  </header>
+<section class="hero shell">
+<div>
+<div class="eyebrow hero-kicker">Website rescue / rebuild / motion</div>
+<h1 class="hero-title">Fix the ordinary.<span class="grad">Build the unforgettable.</span></h1>
+<p class="hero-copy">FrontFix repairs what is broken — then goes further. Premium web experiences with cinematic motion, real-time 3D and interfaces that feel designed, not templated.</p>
+<div class="actions"><a class="btn primary" href="mailto:alex.altherai@gmail.com?subject=Website%20review">Send your website</a><a class="btn ghost" href="./portfolio/">Explore the portfolio</a></div>
+</div>
+<div class="hero-right">
+<div class="hero-label"><b>Website layers</b>REAL-TIME WEBGL / THREE.JS</div>
+<div class="float-card fc1"><small>UI STACK</small><strong>Layers</strong><span><i class="pulse"></i>Live website scene</span></div>
+<div class="float-card fc2"><small>REBUILD FLOW</small><strong>Rescue</strong><span>Repair → refine → premium</span></div>
+</div>
+<div class="scroll-hint">Scroll to transform</div>
+</section>
 
-  <main id="top">
-    <section class="hero shell reveal">
-      <div class="hero-copy">
-        <div class="eyebrow"><span></span> WEBSITE RESCUE • REBUILD • CLEANUP</div>
-        <h1>Fix what makes your website <em>look unfinished.</em></h1>
-        <p class="lede">Broken sections, weak mobile layouts, placeholder content, outdated pages or a full visual rebuild — FrontFix turns rough business websites into cleaner, sharper experiences.</p>
-        <div class="hero-actions">
-          <a class="button primary" href="mailto:alex.altherai@gmail.com?subject=Website%20review&body=Hi%20FrontFix%2C%0A%0AMy%20website%20is%3A%20">Send your website</a>
-          <a class="button secondary" href="#proof">See the process</a>
-        </div>
-        <div class="hero-meta">
-          <span>✓ No call required</span>
-          <span>✓ Fixed scope first</span>
-          <span>✓ Fast turnaround</span>
-        </div>
-      </div>
+<div class="marquee"><div class="track">THREE.JS • GSAP • SCROLLTRIGGER • PREMIUM TYPOGRAPHY • REAL-TIME LIGHTING • SMOOTH MOTION • THREE.JS • GSAP • SCROLLTRIGGER • PREMIUM TYPOGRAPHY • REAL-TIME LIGHTING • SMOOTH MOTION •</div></div>
 
-      <div class="hero-stage" aria-label="FrontFix website transformation visual">
-        <div class="stage-glow"></div>
-        <div class="browser before-card">
-          <div class="browser-top"><i></i><i></i><i></i><b>BEFORE</b></div>
-          <div class="page old">
-            <div class="tiny-nav"></div>
-            <div class="placeholder">YOUR CONTENT<br>GOES HERE</div>
-            <div class="line l1"></div><div class="line l2"></div>
-            <div class="bad-cta">Contact us</div>
-          </div>
-        </div>
-        <div class="browser after-card">
-          <div class="browser-top"><i></i><i></i><i></i><b>AFTER</b></div>
-          <div class="page new">
-            <div class="mini-brand">NORTHLINE</div>
-            <div class="mini-kicker">BUILT FOR CLARITY</div>
-            <div class="mini-title">A stronger first impression.</div>
-            <div class="mini-copy"></div>
-            <div class="mini-copy short"></div>
-            <div class="good-cta">Request a quote →</div>
-          </div>
-        </div>
-        <div class="floating-chip chip-one">Mobile cleanup</div>
-        <div class="floating-chip chip-two">Clear CTA</div>
-        <div class="floating-chip chip-three">Modern rebuild</div>
-      </div>
-    </section>
+<section id="services" class="chapter shell chapter-one">
+<div>
+<div class="number">01 / WEBSITE RESCUE</div>
+<h2>Start with the friction that costs trust.</h2>
+<p>We find visible problems first: unfinished content, broken paths, weak hierarchy, dated layouts and mobile experiences that make a good business feel smaller than it is.</p>
+<div class="feature-list">
+<div class="feature"><b>01</b><span><b>Inspect</b><br>Public-facing problems and friction.</span></div>
+<div class="feature"><b>02</b><span><b>Scope</b><br>One clear fix before any paid work.</span></div>
+<div class="feature"><b>03</b><span><b>Transform</b><br>From repair to premium rebuild when needed.</span></div>
+</div>
+</div>
+<div class="panel-stage">
+<div class="panel big scan-panel"><div class="panel-top"><i></i><i></i><i></i></div><div class="panel-body"><div class="scan-title">FRONTFIX VISUAL SCAN</div><div class="scan-score">07 <span>public issues</span></div><div class="scan-row"><span>Placeholder content</span><b>CRITICAL</b></div><div class="scan-row"><span>CTA hierarchy</span><b>HIGH</b></div><div class="scan-row"><span>Mobile spacing</span><b>MEDIUM</b></div><div class="scan-row"><span>Trust proof</span><b>MEDIUM</b></div></div></div>
+<div class="panel small chart-panel"><div class="panel-body"><div class="scan-title">POLISH INDEX</div><div class="mini-chart"><i style="height:28%"></i><i style="height:42%"></i><i style="height:51%"></i><i style="height:74%"></i><i style="height:90%"></i></div></div></div>
+</div>
+</section>
 
-    <section class="signal-strip">
-      <div>Placeholder copy</div><div>Broken CTA</div><div>Outdated layout</div><div>Mobile issues</div><div>Slow trust</div><div>Confusing contact path</div>
-    </section>
+<section id="work" class="showcase-wrap shell">
+<div class="showcase-head"><div class="eyebrow">Selected concepts</div><h2>Different industries. Different visual worlds.</h2></div>
+<div class="cases">
+<a class="case case1" href="./preview/showcase-neonflow/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none"><div class="bg"></div><div class="orb-demo"></div><div class="case-copy"><small>SAAS / AI • CONCEPT</small><h3>NeonFlow ↗</h3></div></a>
+<a class="case case2" href="./preview/showcase-aurelia/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none"><div class="bg"></div><div class="arch-demo"></div><div class="case-copy"><small>LUXURY / INTERIORS • CONCEPT</small><h3>Aurelia House ↗</h3></div></a>
+<a class="case case3" href="./preview/showcase-kinetic/" target="_blank" rel="noopener" style="display:block;color:inherit;text-decoration:none"><div class="bg"></div><div class="shape"></div><div class="case-copy"><small>CREATIVE / BRAND • CONCEPT</small><h3>Kinetic Studio ↗</h3></div></a>
+</div>
+</section>
 
-    <section id="services" class="section shell reveal">
-      <div class="section-head">
-        <p class="eyebrow">WHAT WE FIX</p>
-        <h2>Small fixes when that’s enough. Full rebuilds when it isn’t.</h2>
-      </div>
-      <div class="service-grid">
-        <article class="service-card spotlight">
-          <span class="service-no">01</span>
-          <div>
-            <p class="tag">Fastest option</p>
-            <h3>Emergency Website Fix</h3>
-            <p>Visible bugs, placeholder content, broken buttons, layout problems, incorrect contact info and other public mistakes.</p>
-          </div>
-          <strong>From €29</strong>
-        </article>
-        <article class="service-card">
-          <span class="service-no">02</span>
-          <div>
-            <p class="tag">Best for outdated sites</p>
-            <h3>Homepage Rescue</h3>
-            <p>Sharper hierarchy, stronger messaging, cleaner mobile flow and a clearer path to contact or booking.</p>
-          </div>
-          <strong>From €79</strong>
-        </article>
-        <article class="service-card">
-          <span class="service-no">03</span>
-          <div>
-            <p class="tag">Premium</p>
-            <h3>Modern Website Rebuild</h3>
-            <p>A complete visual refresh for businesses whose website no longer represents the quality of their work.</p>
-          </div>
-          <strong>Custom quote</strong>
-        </article>
-        <article class="service-card">
-          <span class="service-no">04</span>
-          <div>
-            <p class="tag">Low-friction entry</p>
-            <h3>Website Cleanup Audit</h3>
-            <p>We scan for embarrassing public issues, weak trust signals, demo remnants and obvious conversion friction.</p>
-          </div>
-          <strong>From €19</strong>
-        </article>
-      </div>
-    </section>
+<section id="pricing" class="pricing shell">
+<div class="eyebrow">Start small or rebuild properly</div>
+<h2>Pay for the problem you actually need solved.</h2>
+<div class="price-grid">
+<div class="price"><small>QUICK FIX</small><strong>€29+</strong><p>One visible problem, scoped clearly and fixed fast.</p><a href="mailto:alex.altherai@gmail.com?subject=Quick%20Fix">Start here →</a></div>
+<div class="price featured"><small>HOMEPAGE RESCUE</small><strong>€79+</strong><p>Structure, mobile hierarchy, CTA path and visual cleanup.</p><a href="mailto:alex.altherai@gmail.com?subject=Homepage%20Rescue">Rescue the homepage →</a></div>
+<div class="price"><small>PREMIUM REBUILD</small><strong>Custom</strong><p>High-end motion, 3D and a complete visual direction.</p><a href="mailto:alex.altherai@gmail.com?subject=Premium%20Rebuild">Build something memorable →</a></div>
+</div>
+</section>
 
-    <section id="proof" class="section shell reveal">
-      <div class="proof-grid">
-        <div class="proof-copy">
-          <p class="eyebrow">NO AGENCY THEATRE</p>
-          <h2>You send the website. We find the friction.</h2>
-          <p>We start with what is actually visible and worth fixing. No bloated discovery process, no forced call, no invented case-study numbers.</p>
-          <div class="proof-points">
-            <div><span>01</span><b>Inspect</b><p>We review the live site and identify the highest-impact problems.</p></div>
-            <div><span>02</span><b>Scope</b><p>You get a clear fix, price and expected result before paid work starts.</p></div>
-            <div><span>03</span><b>Improve</b><p>We implement the agreed work and test the result on desktop and mobile.</p></div>
-          </div>
-        </div>
-        <div class="audit-panel">
-          <div class="audit-top"><span>FRONTFIX SCAN</span><span class="live-dot">LIVE</span></div>
-          <div class="score-row"><div><small>PUBLIC ISSUES</small><strong>07</strong></div><div><small>PRIORITY</small><strong>HIGH</strong></div></div>
-          <div class="audit-list">
-            <div><span class="bad">!</span> Placeholder content visible <b>Critical</b></div>
-            <div><span class="bad">!</span> Mobile CTA below fold <b>High</b></div>
-            <div><span class="warn">•</span> Contact path unclear <b>Medium</b></div>
-            <div><span class="warn">•</span> Trust proof buried <b>Medium</b></div>
-            <div><span class="good">✓</span> HTTPS active <b>Good</b></div>
-          </div>
-          <p class="audit-note">Illustrative scan — we do not invent client results.</p>
-        </div>
-      </div>
-    </section>
+<section class="end shell">
+<div><div class="eyebrow">FrontFix</div><h2>Stop looking<span>unfinished.</span></h2><p>Send the site you want to stop apologizing for. We’ll tell you what is worth fixing first.</p><a class="btn primary" href="mailto:alex.altherai@gmail.com?subject=Website%20review">Send your website</a></div>
+</section>
+<footer class="footer shell"><span>FrontFix — website rescue & premium rebuilds</span><span>Concept projects are clearly marked</span><span>© 2026</span></footer>
+</div>
 
-    <section class="section shell reveal showcase">
-      <div class="showcase-card">
-        <p class="eyebrow">THE DIFFERENCE</p>
-        <h2>From “good enough” to something you can confidently send people.</h2>
-        <div class="split-demo">
-          <div class="demo-panel demo-old">
-            <span>BEFORE</span>
-            <h3>Welcome to our website</h3>
-            <p>We provide professional services and solutions.</p>
-            <button>Learn more</button>
-          </div>
-          <div class="demo-panel demo-new">
-            <span>AFTER</span>
-            <p class="mini-label">ROOFING • MARLBOROUGH</p>
-            <h3>Fast roof repairs. Clear quotes. No guesswork.</h3>
-            <p>One focused message, stronger proof and a direct path to action.</p>
-            <button>Request a quote →</button>
-          </div>
-        </div>
-      </div>
-    </section>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.8/dist/lenis.min.js"></script>
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
 
+const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const canvas=document.getElementById('webgl');
+const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true,powerPreference:'high-performance'});
+renderer.setPixelRatio(Math.min(devicePixelRatio,1.7));
+renderer.setSize(innerWidth,innerHeight);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=1.12;
 
-    <section id="portfolio" class="section shell reveal portfolio">
-      <div class="section-head">
-        <p class="eyebrow">SELECTED CONCEPTS</p>
-        <div>
-          <h2>Built to look like something people remember.</h2>
-          <p class="portfolio-intro">Three fictional concept projects showing different visual directions we can build. No fake clients, no fake metrics — just design and execution.</p>
-        </div>
-      </div>
-      <div class="portfolio-grid">
-        <a class="portfolio-card neon" href="./preview/showcase-neonflow/" target="_blank" rel="noopener">
-          <div class="portfolio-preview">
-            <div class="mini-nav"><b>NeonFlow</b><span>Platform&nbsp;&nbsp; Pricing&nbsp;&nbsp; Start free</span></div>
-            <div class="neon-orb"></div>
-            <div class="preview-copy"><small>AI WORKFLOW INFRASTRUCTURE</small><strong>Move faster.<br><em>Think bigger.</em></strong></div>
-            <div class="preview-glass">+38.6%</div>
-          </div>
-          <div class="portfolio-meta"><div><span>SaaS / AI</span><h3>NeonFlow</h3></div><b>View concept ↗</b></div>
-        </a>
-        <a class="portfolio-card aurelia" href="./preview/showcase-aurelia/" target="_blank" rel="noopener">
-          <div class="portfolio-preview">
-            <div class="mini-nav dark"><b>AURELIA HOUSE</b><span>Residences&nbsp;&nbsp; Design&nbsp;&nbsp; Enquire</span></div>
-            <div class="aurelia-arch"></div>
-            <div class="preview-copy luxe"><small>PRIVATE RESIDENCES • LISBON</small><strong>Quiet luxury.<br>Made personal.</strong></div>
-          </div>
-          <div class="portfolio-meta"><div><span>Luxury / Interiors</span><h3>Aurelia House</h3></div><b>View concept ↗</b></div>
-        </a>
-        <a class="portfolio-card kinetic" href="./preview/showcase-kinetic/" target="_blank" rel="noopener">
-          <div class="portfolio-preview">
-            <div class="mini-nav dark"><b>KINETIC®</b><span>CREATIVE STUDIO</span></div>
-            <div class="kinetic-shape k1"></div><div class="kinetic-shape k2"></div>
-            <div class="preview-copy brutal"><strong>WE MAKE<br><em>BRANDS MOVE.</em></strong></div>
-          </div>
-          <div class="portfolio-meta"><div><span>Creative / Brand</span><h3>Kinetic Studio</h3></div><b>View concept ↗</b></div>
-        </a>
-      </div>
-    </section>
+const scene=new THREE.Scene();
+const camera=new THREE.PerspectiveCamera(42,innerWidth/innerHeight,.1,100);
+camera.position.set(0,0,8);
 
-    <section id="pricing" class="section shell reveal">
-      <div class="section-head compact">
-        <p class="eyebrow">START SMALL</p>
-        <h2>Pay for the problem you actually need solved.</h2>
-      </div>
-      <div class="pricing-grid">
-        <article><p>QUICK FIX</p><h3>€29<span>+</span></h3><ul><li>Small visible issue</li><li>One focused fix</li><li>Fast turnaround</li></ul></article>
-        <article class="featured"><div class="badge">MOST PRACTICAL</div><p>HOMEPAGE RESCUE</p><h3>€79<span>+</span></h3><ul><li>Homepage structure cleanup</li><li>Mobile improvements</li><li>CTA/contact path</li><li>One revision</li></ul></article>
-        <article><p>MODERN REBUILD</p><h3>Custom</h3><ul><li>Modern visual direction</li><li>Multi-section redesign</li><li>Responsive build</li><li>Scoped before work starts</li></ul></article>
-      </div>
-    </section>
+const root=new THREE.Group();
+scene.add(root);
 
-    <section id="faq" class="section shell reveal faq">
-      <div class="section-head compact"><p class="eyebrow">FAQ</p><h2>Simple answers before you send the link.</h2></div>
-      <div class="faq-list">
-        <details><summary>Do I need a call?</summary><p>No. The whole process can be handled asynchronously by email.</p></details>
-        <details><summary>Can you work with my existing website?</summary><p>Usually yes. We first inspect the platform and confirm what can be changed safely.</p></details>
-        <details><summary>Can you rebuild the whole site?</summary><p>Yes. Smaller fixes remain available, but full visual rebuilds can be scoped separately.</p></details>
-        <details><summary>Do you guarantee more customers?</summary><p>No. We improve clarity, usability and presentation. We do not invent or guarantee business outcomes.</p></details>
-      </div>
-    </section>
+scene.add(new THREE.AmbientLight(0x8aa0ff,1.35));
+const key=new THREE.PointLight(0x6ef0ff,26,24);key.position.set(4,4,5);scene.add(key);
+const fill=new THREE.PointLight(0x7d6cff,20,24);fill.position.set(-4,-1,3);scene.add(fill);
+const rim=new THREE.PointLight(0xffffff,16,20);rim.position.set(0,-4,-2);scene.add(rim);
 
-    <section class="final-cta shell reveal">
-      <div>
-        <p class="eyebrow">READY WHEN YOU ARE</p>
-        <h2>Send the website you want to stop apologizing for.</h2>
-        <p>We’ll tell you what is worth fixing first.</p>
-      </div>
-      <a class="button primary" href="mailto:alex.altherai@gmail.com?subject=Website%20review&body=Hi%20FrontFix%2C%0A%0AMy%20website%20is%3A%20">Send your website</a>
-    </section>
-  </main>
+function glassMaterial(color,opacity=.18){
+  return new THREE.MeshPhysicalMaterial({
+    color,transparent:true,opacity,transmission:.88,roughness:.14,metalness:.08,
+    thickness:1,clearcoat:1,clearcoatRoughness:.08,ior:1.3,side:THREE.DoubleSide
+  });
+}
+function softMaterial(color,emissive=0x000000,emissiveIntensity=0){
+  return new THREE.MeshStandardMaterial({color,emissive,emissiveIntensity,roughness:.25,metalness:.2});
+}
+function addLine(parent,width,x,y,color=0xdde6f8,opacity=.95){
+  const mesh=new THREE.Mesh(
+    new THREE.BoxGeometry(width,.06,.04),
+    new THREE.MeshStandardMaterial({color,transparent:true,opacity,roughness:.4,metalness:.05})
+  );
+  mesh.position.set(x,y,.055);parent.add(mesh);return mesh;
+}
+function addChip(parent,width,height,x,y,color,glow=false){
+  const mesh=new THREE.Mesh(
+    new THREE.BoxGeometry(width,height,.05),
+    new THREE.MeshStandardMaterial({
+      color,emissive:glow?color:0x000000,emissiveIntensity:glow ? .55 : 0,
+      roughness:.2,metalness:.12
+    })
+  );
+  mesh.position.set(x,y,.065);parent.add(mesh);return mesh;
+}
+function buildPanel({width,height,color,accent,titleColor,opacity}){
+  const group=new THREE.Group();
+  const panel=new THREE.Mesh(new THREE.BoxGeometry(width,height,.08),glassMaterial(color,opacity));
+  group.add(panel);
 
-  <footer class="footer shell">
-    <a class="brand" href="#top">Front<span>Fix</span></a>
-    <p>Fast website fixes. Modern rebuilds. No agency theatre.</p>
-    <a href="mailto:alex.altherai@gmail.com">alex.altherai@gmail.com</a>
-  </footer>
+  const edges=new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.BoxGeometry(width,height,.08)),
+    new THREE.LineBasicMaterial({color:0xa8b7d1,transparent:true,opacity:.18})
+  );
+  group.add(edges);
 
-  <script src="./script.js"></script>
+  const topBar=new THREE.Mesh(
+    new THREE.BoxGeometry(width*.92,.16,.02),
+    new THREE.MeshStandardMaterial({color:0x16202f,transparent:true,opacity:.72,roughness:.4,metalness:.1})
+  );
+  topBar.position.set(0,height*.38,.055);group.add(topBar);
+
+  addChip(group,.35,.08,-width*.29,height*.38,accent,true);
+  addChip(group,.18,.05,-width*.15,height*.38,0xffffff);
+  addChip(group,.18,.05,-width*.07,height*.38,0xffffff);
+  addChip(group,.18,.05,width*.01,height*.38,0xffffff);
+
+  addLine(group,width*.42,-width*.18,height*.12,titleColor);
+  addLine(group,width*.22,-width*.28,height*.01,0xb9c8de,.9);
+  addLine(group,width*.30,-width*.24,-height*.08,0xb9c8de,.82);
+  addLine(group,width*.18,-width*.30,-height*.17,0x95a3ba,.72);
+
+  const card=new THREE.Mesh(
+    new THREE.BoxGeometry(width*.32,height*.36,.04),
+    new THREE.MeshStandardMaterial({color:0x111827,transparent:true,opacity:.72,roughness:.3,metalness:.08})
+  );
+  card.position.set(width*.22,.02,.06);group.add(card);
+
+  addChip(group,width*.18,.08,width*.21,height*.1,accent,true);
+  addLine(group,width*.14,width*.17,-.02,0xe8effa,.95);
+  addLine(group,width*.18,width*.19,-.12,0xb9c8de,.85);
+
+  const cta=new THREE.Mesh(new THREE.BoxGeometry(width*.25,.12,.05),softMaterial(accent,accent,.35));
+  cta.position.set(0,-height*.32,.07);group.add(cta);
+  return group;
+}
+
+const backLeft=buildPanel({width:3.7,height:2.35,color:0x0d1320,accent:0x7d6cff,titleColor:0xeef4ff,opacity:.16});
+backLeft.position.set(-1.05,.45,-1.2);backLeft.rotation.set(.16,-.42,-.06);root.add(backLeft);
+
+const backRight=buildPanel({width:3.3,height:2.05,color:0x0e1726,accent:0x6ef0ff,titleColor:0xf0f7ff,opacity:.14});
+backRight.position.set(1.05,-.15,-.45);backRight.rotation.set(-.1,.32,.05);root.add(backRight);
+
+const frontPanel=buildPanel({width:4.1,height:2.65,color:0x111a2a,accent:0xffffff,titleColor:0xffffff,opacity:.2});
+frontPanel.position.set(0,.05,.6);frontPanel.rotation.set(-.05,.12,.02);root.add(frontPanel);
+
+const accentPlate=new THREE.Mesh(new THREE.BoxGeometry(1.1,.22,.06),softMaterial(0x6ef0ff,0x6ef0ff,.5));
+accentPlate.position.set(.2,.95,.85);frontPanel.add(accentPlate);
+
+const floatBits=new THREE.Group();root.add(floatBits);
+for(let i=0;i<14;i++){
+  const w=.14+Math.random()*.22,h=.06+Math.random()*.08,z=.04+Math.random()*.04;
+  const colors=[0x6ef0ff,0x7d6cff,0xffffff],color=colors[i%colors.length];
+  const chip=new THREE.Mesh(
+    new THREE.BoxGeometry(w,h,z),
+    new THREE.MeshStandardMaterial({
+      color,emissive:color,emissiveIntensity:color===0xffffff ? .08 : .35,
+      transparent:true,opacity:.95,roughness:.22,metalness:.1
+    })
+  );
+  chip.position.set((Math.random()-.5)*6.5,(Math.random()-.5)*4.2,-2+Math.random()*3.2);
+  chip.rotation.set(Math.random()*Math.PI,Math.random()*Math.PI,Math.random()*Math.PI);
+  chip.userData={speed:.3+Math.random()*.6,offset:Math.random()*Math.PI*2};
+  floatBits.add(chip);
+}
+
+const particlesGeo=new THREE.BufferGeometry();
+const count=550,pos=new Float32Array(count*3);
+for(let i=0;i<count;i++){
+  const r=4+Math.random()*5,a=Math.random()*Math.PI*2,b=(Math.random()-.5)*Math.PI;
+  pos[i*3]=Math.cos(a)*Math.cos(b)*r;
+  pos[i*3+1]=Math.sin(b)*r;
+  pos[i*3+2]=Math.sin(a)*Math.cos(b)*r;
+}
+particlesGeo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+const particles=new THREE.Points(particlesGeo,new THREE.PointsMaterial({color:0x92ecff,size:.015,transparent:true,opacity:.34}));
+scene.add(particles);
+
+let targetX=0,targetY=0;
+window.addEventListener('pointermove',e=>{
+  targetX=(e.clientX/innerWidth-.5)*.42;
+  targetY=(e.clientY/innerHeight-.5)*.24;
+});
+
+function resize(){renderer.setSize(innerWidth,innerHeight);camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix()}
+addEventListener('resize',resize);
+
+function frame(t){
+  requestAnimationFrame(frame);
+  const time=t*.001;
+  root.rotation.y+=(targetX-root.rotation.y)*.04;
+  root.rotation.x+=(targetY-root.rotation.x)*.04;
+  if(!reduced){
+    frontPanel.rotation.z=Math.sin(time*.45)*.03;
+    backLeft.rotation.z=-.06+Math.sin(time*.28)*.025;
+    backRight.rotation.z=.05+Math.cos(time*.33)*.02;
+    frontPanel.position.y=.05+Math.sin(time*.7)*.06;
+    backLeft.position.y=.45+Math.cos(time*.52)*.05;
+    backRight.position.y=-.15+Math.sin(time*.6)*.05;
+    floatBits.children.forEach((chip,i)=>{
+      chip.position.y+=Math.sin(time*chip.userData.speed+chip.userData.offset)*.0018;
+      chip.rotation.x+=.002+i*.00002;
+      chip.rotation.y+=.003+i*.00002;
+    });
+    particles.rotation.y=time*.015;
+  }
+  renderer.render(scene,camera);
+}
+requestAnimationFrame(frame);
+
+gsap.registerPlugin(ScrollTrigger);
+if(!reduced){
+  const lenis=new Lenis({duration:1.1,smoothWheel:true});
+  lenis.on('scroll',ScrollTrigger.update);
+  gsap.ticker.add(time=>lenis.raf(time*1000));
+  gsap.ticker.lagSmoothing(0);
+
+  gsap.from('.hero-kicker',{y:18,opacity:0,duration:.7,ease:'power3.out'});
+  gsap.from('.hero-title',{y:70,opacity:0,duration:1.1,delay:.1,ease:'power4.out'});
+  gsap.from('.hero-copy,.actions',{y:30,opacity:0,duration:.8,delay:.45,stagger:.12});
+  gsap.from('.float-card',{scale:.8,opacity:0,duration:.9,delay:.65,stagger:.14,ease:'back.out(1.5)'});
+
+  gsap.to(root.rotation,{z:Math.PI*.12,y:Math.PI*.55,ease:'none',scrollTrigger:{trigger:'.chapter-one',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.to(root.position,{x:-1.8,y:-.35,z:-.8,ease:'none',scrollTrigger:{trigger:'.chapter-one',start:'top 85%',end:'bottom 15%',scrub:1}});
+  gsap.to(frontPanel.scale,{x:.82,y:.82,z:.82,ease:'none',scrollTrigger:{trigger:'.showcase-wrap',start:'top bottom',end:'top 15%',scrub:1}});
+  gsap.to(root.position,{x:2.2,y:.8,z:-1.4,ease:'none',scrollTrigger:{trigger:'.showcase-wrap',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.to(root.rotation,{x:Math.PI*.18,z:Math.PI*.14,ease:'none',scrollTrigger:{trigger:'.showcase-wrap',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.to('.track',{xPercent:-38,ease:'none',scrollTrigger:{trigger:'.marquee',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.from('.scan-panel',{x:100,rotateY:-14,opacity:0,scrollTrigger:{trigger:'.chapter-one',start:'top 70%',end:'center 45%',scrub:1}});
+  gsap.from('.chart-panel',{x:-80,y:80,rotateZ:-6,opacity:0,scrollTrigger:{trigger:'.chapter-one',start:'top 65%',end:'center 40%',scrub:1}});
+  document.querySelectorAll('.case').forEach(el=>{
+    gsap.from(el,{y:100,scale:.94,opacity:0,scrollTrigger:{trigger:el,start:'top 90%',end:'top 55%',scrub:1}});
+    gsap.to(el.querySelector('.bg'),{scale:1.12,scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:1}});
+  });
+  gsap.from('.price',{y:80,opacity:0,stagger:.12,scrollTrigger:{trigger:'.price-grid',start:'top 78%'}});
+  gsap.to(root.position,{x:0,y:0,z:-.3,ease:'none',scrollTrigger:{trigger:'.end',start:'top bottom',end:'center center',scrub:1}});
+  gsap.to(frontPanel.scale,{x:1.08,y:1.08,z:1.08,ease:'none',scrollTrigger:{trigger:'.end',start:'top bottom',end:'center center',scrub:1}});
+}
+</script>
 </body>
 </html>
